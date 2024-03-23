@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./App.css";
-import { Counter } from "./components/Counter";
+import { Counter } from "./components/counter/Counter";
 
 function App() {
   const maxValue = 5;

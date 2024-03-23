@@ -1,5 +1,5 @@
-import { myTheme } from "../styles/Theme.styled";
-import { Button } from "./Button";
+import { myTheme } from "../../styles/Theme.styled";
+import { Button } from "../button/Button";
 import styled from "styled-components";
 
 type CounterPropsType = {
@@ -24,16 +24,12 @@ export const Counter = ({
         {number}
       </StyledNumber>
       <FlexWrapper>
-        <Button
-          title="inc"
-          onClick={incrementHandler}
-          disabled={number === maxValue}
-        />
-        <Button
-          title="reset"
-          onClick={resetHandler}
-          disabled={number === minValue}
-        />
+        <Button onClick={incrementHandler} disabled={number === maxValue}>
+          {"inc"}
+        </Button>
+        <Button onClick={resetHandler} disabled={number === minValue}>
+          {"reset"}
+        </Button>
       </FlexWrapper>
     </StyledCounter>
   );
@@ -54,6 +50,7 @@ const StyledCounter = styled.div`
   gap: 20px;
   padding: 20px;
 `;
+
 const StyledNumber = styled.span`
   color: ${(props) => props.color};
   display: flex;
