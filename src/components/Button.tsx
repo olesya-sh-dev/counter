@@ -1,4 +1,5 @@
 import { styled } from "styled-components";
+import { myTheme } from "../styles/Theme.styled";
 
 type ButtonPropsType = {
   title: string;
@@ -15,8 +16,8 @@ export const Button = ({ onClick, disabled, title }: ButtonPropsType) => {
 };
 
 const StyledButton = styled.button`
-  background-color: #c7b619;
-  border: 5px solid #38372c;
+  background-color: ${myTheme.colors.button};
+  border: 5px solid ${myTheme.colors.accent};
   font-size: 40px;
   display: flex;
   justify-content: center;
@@ -26,7 +27,7 @@ const StyledButton = styled.button`
   display: flex;
 
   border-radius: 10px;
-  color: #38372c;
+  color: ${myTheme.colors.accent};
 
   &:disabled {
     opacity: 0.4;

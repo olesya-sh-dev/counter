@@ -1,3 +1,4 @@
+import { myTheme } from "../styles/Theme.styled";
 import { Button } from "./Button";
 import styled from "styled-components";
 
@@ -17,7 +18,9 @@ export const Counter = ({
 }: CounterPropsType) => {
   return (
     <StyledCounter>
-      <StyledNumber color={number === maxValue ? "red" : "white"}>
+      <StyledNumber
+        color={number === maxValue ? myTheme.colors.dark : myTheme.colors.light}
+      >
         {number}
       </StyledNumber>
       <FlexWrapper>
@@ -37,8 +40,8 @@ export const Counter = ({
 };
 
 const StyledCounter = styled.div`
-  border: 5px solid #38372c;
-  background-color: #0fb82e;
+  border: 5px solid ${myTheme.colors.accent};
+  background-color: ${myTheme.colors.primary};
   width: 400px;
   height: 200px;
   display: flex;
@@ -53,14 +56,13 @@ const StyledCounter = styled.div`
 `;
 const StyledNumber = styled.span`
   color: ${(props) => props.color};
-
   display: flex;
   padding: 10px;
   justify-content: center;
   align-items: center;
-  border: 5px solid #38372c;
+  border: 5px solid ${myTheme.colors.accent};
   border-radius: 10px;
-  background-color: #96e1a4;
+  background-color: ${myTheme.colors.secondary};
   font-size: 70px;
   color: ${(props) => props.color};
   width: 350px;
@@ -71,9 +73,9 @@ const FlexWrapper = styled.div`
   width: 350px;
   justify-content: space-evenly;
   align-items: center;
-  border: 5px solid #38372c;
+  border: 5px solid ${myTheme.colors.accent};
   border-radius: 10px;
   gap: 20px;
-  background-color: #96e1a4;
+  background-color: ${myTheme.colors.secondary};
   padding: 10px;
 `;
