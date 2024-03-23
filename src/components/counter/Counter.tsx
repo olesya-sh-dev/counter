@@ -1,7 +1,7 @@
 import { myTheme } from "../../styles/Theme.styled";
 import { Button } from "../button/Button";
-import styled from "styled-components";
 import { S } from "./Counter_Styles";
+import { FlexWrapper } from "../Wrapper";
 
 type CounterPropsType = {
   maxValue: number;
@@ -35,15 +35,3 @@ export const Counter = ({
     </S.Counter>
   );
 };
-
-const FlexWrapper = styled.div`
-  display: flex;
-  width: 350px;
-  justify-content: space-evenly;
-  align-items: center;
-  border: 5px solid ${myTheme.colors.accent};
-  border-radius: 10px;
-  gap: 20px;
-  background-color: ${myTheme.colors.secondary};
-  padding: 10px;
-`;
