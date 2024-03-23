@@ -2,29 +2,39 @@ import React, { useState } from "react";
 import { Button } from "./Button";
 import styled from "styled-components";
 
-export const Counter = () => {
-  const [number, setNumber] = useState(0);
+type CounterPropsType = {
+  maxValue: number;
+  minValue: number;
+};
 
+export const Counter = ({ maxValue, minValue }: CounterPropsType) => {
+  const [number, setNumber] = useState<number>(minValue);
   const incrementHandler = () => {
-    setNumber(number + 1);
+    if (number < maxValue) {
+      setNumber((prevNumber) => prevNumber + 1);
+    }
   };
 
   const resetHandler = () => {
-    setNumber(0);
+    setNumber(minValue);
   };
 
   return (
     <StyledCounter>
-      <StylenNumber color={number === 5 ? "red" : "white"}>
+      <StyledNumber color={number === maxValue ? "red" : "white"}>
         {number}
-      </StylenNumber>
+      </StyledNumber>
       <FlexWrapper>
         <Button
           title="inc"
           onClick={incrementHandler}
-          disabled={number === 5}
+          disabled={number === maxValue}
         />
-        <Button title="reset" onClick={resetHandler} disabled={number === 0} />
+        <Button
+          title="reset"
+          onClick={resetHandler}
+          disabled={number === minValue}
+        />
       </FlexWrapper>
     </StyledCounter>
   );
@@ -40,16 +50,32 @@ const StyledCounter = styled.div`
   align-items: center;
   flex-direction: column;
   margin: 0 auto;
-  margin-top: 200px;
+  margin-top: 100px;
   border-radius: 10px;
   gap: 20px;
+  padding: 20px;
 `;
-const StylenNumber = styled.span`
+const StyledNumber = styled.span`
+  display: flex;
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
+  border: 5px solid #38372c;
+  border-radius: 10px;
+  background-color: #96e1a4;
   font-size: 70px;
   color: ${(props) => props.color};
+  width: 350px;
 `;
 
 const FlexWrapper = styled.div`
   display: flex;
+  width: 350px;
+  justify-content: space-evenly;
+  align-items: center;
+  border: 5px solid #38372c;
+  border-radius: 10px;
   gap: 20px;
+  background-color: #96e1a4;
+  padding: 10px;
 `;

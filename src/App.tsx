@@ -4,10 +4,12 @@ import "./App.css";
 import { Counter } from "./components/Counter";
 
 function App() {
+  const maxValue = 5;
+  const minValue = 0;
   return (
     <div className="App">
-      <Counter />
-      <Counter />
+      <Counter maxValue={maxValue} minValue={minValue} />
+      <Counter maxValue={maxValue} minValue={minValue} />
     </div>
   );
 }
