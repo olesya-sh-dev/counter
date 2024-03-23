@@ -1,24 +1,20 @@
-import React, { useState } from "react";
 import { Button } from "./Button";
 import styled from "styled-components";
 
 type CounterPropsType = {
   maxValue: number;
   minValue: number;
+  incrementHandler: () => void;
+  resetHandler: () => void;
+  number: number;
 };
-
-export const Counter = ({ maxValue, minValue }: CounterPropsType) => {
-  const [number, setNumber] = useState<number>(minValue);
-  const incrementHandler = () => {
-    if (number < maxValue) {
-      setNumber((prevNumber) => prevNumber + 1);
-    }
-  };
-
-  const resetHandler = () => {
-    setNumber(minValue);
-  };
-
+export const Counter = ({
+  maxValue,
+  minValue,
+  incrementHandler,
+  resetHandler,
+  number,
+}: CounterPropsType) => {
   return (
     <StyledCounter>
       <StyledNumber color={number === maxValue ? "red" : "white"}>
@@ -56,6 +52,8 @@ const StyledCounter = styled.div`
   padding: 20px;
 `;
 const StyledNumber = styled.span`
+  color: ${(props) => props.color};
+
   display: flex;
   padding: 10px;
   justify-content: center;

@@ -6,7 +6,7 @@ type ButtonPropsType = {
   disabled?: boolean;
 };
 
-export const Button = ({ title, onClick, disabled }: ButtonPropsType) => {
+export const Button = ({ onClick, disabled, title }: ButtonPropsType) => {
   return (
     <StyledButton onClick={onClick} disabled={disabled}>
       {title}
@@ -27,6 +27,7 @@ const StyledButton = styled.button`
 
   border-radius: 10px;
   color: #38372c;
+
   &:disabled {
     opacity: 0.4;
   }
