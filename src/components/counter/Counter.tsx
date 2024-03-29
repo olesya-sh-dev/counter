@@ -1,7 +1,7 @@
 import { myTheme } from "../../styles/Theme.styled";
 import { Button } from "../button/Button";
 import { S } from "./Counter_Styles";
-import { FlexWrapper } from "../Wrapper";
+import { Wrapper } from "../Wrapper";
 
 type CounterPropsType = {
   maxValue: number;
@@ -20,18 +20,20 @@ export const Counter = ({
   return (
     <S.Counter>
       <S.Number
-        color={number === maxValue ? myTheme.colors.dark : myTheme.colors.light}
+        color={
+          number === maxValue ? myTheme.colors.dark : myTheme.colors.primary
+        }
       >
         {number}
       </S.Number>
-      <FlexWrapper>
+      <Wrapper>
         <Button onClick={incrementHandler} disabled={number === maxValue}>
           {"inc"}
         </Button>
         <Button onClick={resetHandler} disabled={number === minValue}>
           {"reset"}
         </Button>
-      </FlexWrapper>
+      </Wrapper>
     </S.Counter>
   );
 };

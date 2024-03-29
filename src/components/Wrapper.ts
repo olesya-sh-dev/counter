@@ -1,7 +1,7 @@
 import { styled } from "styled-components";
 import { myTheme } from "../styles/Theme.styled";
 
-export const FlexWrapper = styled.div`
+export const Wrapper = styled.div`
   display: flex;
   width: 350px;
   justify-content: space-evenly;

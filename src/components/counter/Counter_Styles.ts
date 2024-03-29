@@ -5,16 +5,15 @@ const Counter = styled.div`
   border: 5px solid ${myTheme.colors.accent};
   background-color: ${myTheme.colors.primary};
   width: 400px;
-  height: 200px;
+  height: 280px;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  margin: 0 auto;
   margin-top: 100px;
   border-radius: 10px;
-  gap: 20px;
-  padding: 20px;
+  gap: 15px;
+  padding: 15px;
 `;
 
 const Number = styled.span`
@@ -27,6 +26,7 @@ const Number = styled.span`
   border-radius: 10px;
   background-color: ${myTheme.colors.secondary};
   font-size: 70px;
+  font-weight: 900;
   color: ${(props) => props.color};
   width: 350px;
 `;

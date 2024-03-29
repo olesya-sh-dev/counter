@@ -2,9 +2,9 @@ export const myTheme = {
   colors: {
     primary: "#0fb82e",
     accent: "#38372c",
-    secondary: "#96e1a4",
-    light: "#fff",
-    dark: "#e01515",
+    secondary: "#d1f9d9",
+    light: "#eeeee5",
+    dark: "#b04343",
     button: "#c7b619",
   },
 };

@@ -1,10 +1,11 @@
 import { useState } from "react";
 import "./App.css";
 import { Counter } from "./components/counter/Counter";
+import { Settings } from "./components/settings/Settings";
 
 function App() {
-  const maxValue = 5;
-  const minValue = 0;
+  let maxValue = 5;
+  let minValue = 0;
   const [number, setNumber] = useState<number>(minValue);
   const incrementHandler = () => {
     if (number < maxValue) {
@@ -18,13 +19,23 @@ function App() {
 
   return (
     <div className="App">
-      <Counter
-        maxValue={maxValue}
-        minValue={minValue}
-        incrementHandler={incrementHandler}
-        resetHandler={resetHandler}
-        number={number}
-      />
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          gap: "100px",
+        }}
+      >
+        <Settings />
+        <Counter
+          maxValue={maxValue}
+          minValue={minValue}
+          incrementHandler={incrementHandler}
+          resetHandler={resetHandler}
+          number={number}
+        />
+      </div>
     </div>
   );
 }
