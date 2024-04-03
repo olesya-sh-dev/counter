@@ -3,12 +3,18 @@ import { S } from "./Settings_styles";
 
 type SettingsValueProps = {
   title: string;
+  value: number;
+  onChange: (value: number) => void;
 };
 export const SettingsValue = (props: SettingsValueProps) => {
+  const setNumberHandler = (event: ChangeEvent<HTMLInputElement>) => {
+    props.onChange(+event.currentTarget.value);
+  };
+
   return (
     <S.SettingsValueItem>
       <span>{props.title}</span>
-      <input type="number" />
+      <input type="number" value={props.value} onChange={setNumberHandler} />
     </S.SettingsValueItem>
   );
 };

@@ -4,9 +4,19 @@ import { Counter } from "./components/counter/Counter";
 import { Settings } from "./components/settings/Settings";
 
 function App() {
-  let maxValue = 5;
-  let minValue = 0;
+  const getFromLocalStorage = () => {
+    let maxValueString = localStorage.getItem("maxValue");
+    let maxValue = maxValueString ? parseInt(maxValueString) : 5;
+
+    let minValueString = localStorage.getItem("startValue");
+    let minValue = minValueString ? parseInt(minValueString) : 0;
+
+    return { maxValue, minValue };
+  };
+
+  const { maxValue, minValue } = getFromLocalStorage();
   const [number, setNumber] = useState<number>(minValue);
+
   const incrementHandler = () => {
     if (number < maxValue) {
       setNumber((prevNumber) => prevNumber + 1);
@@ -14,7 +24,7 @@ function App() {
   };
 
   const resetHandler = () => {
-    setNumber(minValue);
+    setNumber(getFromLocalStorage().minValue);
   };
 
   return (
@@ -27,10 +37,10 @@ function App() {
           gap: "100px",
         }}
       >
-        <Settings />
+        <Settings maxValue={maxValue} startValue={minValue} />
         <Counter
-          maxValue={maxValue}
-          minValue={minValue}
+          maxValue={getFromLocalStorage().maxValue}
+          minValue={getFromLocalStorage().minValue}
           incrementHandler={incrementHandler}
           resetHandler={resetHandler}
           number={number}
