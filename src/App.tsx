@@ -37,7 +37,11 @@ function App() {
           gap: "100px",
         }}
       >
-        <Settings maxValue={maxValue} startValue={minValue} />
+        <Settings
+          maxValue={maxValue}
+          startValue={minValue}
+          setNumber={setNumber}
+        />
         <Counter
           maxValue={getFromLocalStorage().maxValue}
           minValue={getFromLocalStorage().minValue}

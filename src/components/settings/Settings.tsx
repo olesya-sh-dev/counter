@@ -7,6 +7,7 @@ import { SettingsValue } from "./SettingsValue";
 type SettingsPropsType = {
   maxValue: number;
   startValue: number;
+  setNumber: (value: number) => void;
 };
 
 export const Settings = (props: SettingsPropsType) => {
@@ -23,6 +24,11 @@ export const Settings = (props: SettingsPropsType) => {
 
   const handleStartValueChange = (value: number) => {
     setStartValue(value);
+  };
+
+  const setButtonHandler = () => {
+    setToLocalStorage(maxValue, startValue);
+    props.setNumber(startValue);
   };
   return (
     <div>
@@ -43,9 +49,13 @@ export const Settings = (props: SettingsPropsType) => {
         </S.SettingsField>
         <Wrapper>
           <Button
-            onClick={() => {
-              setToLocalStorage(maxValue, startValue);
-            }}
+            onClick={setButtonHandler}
+            disabled={
+              maxValue === startValue ||
+              maxValue < startValue ||
+              startValue < 0 ||
+              maxValue < 0
+            }
           >
             set
           </Button>
