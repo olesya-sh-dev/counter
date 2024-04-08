@@ -19,6 +19,12 @@ export const Settings = (props: SettingsPropsType) => {
   const [maxValue, setMaxValue] = useState(props.maxValue);
   const [startValue, setStartValue] = useState(props.startValue);
 
+  const warning =
+    maxValue === startValue ||
+    maxValue < startValue ||
+    startValue < 0 ||
+    maxValue < 0;
+
   const handleMaxValueChange = (value: number) => {
     setMaxValue(value);
   };
@@ -36,7 +42,7 @@ export const Settings = (props: SettingsPropsType) => {
     <div>
       <S.Settings>
         <S.SettingsField>
-          <S.SettingsBox>
+          <S.SettingsBox color={warning ? `${myTheme.colors.dark}` : ""}>
             <SettingsValue
               title="max value"
               value={maxValue}

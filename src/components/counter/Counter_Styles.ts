@@ -30,8 +30,15 @@ const Number = styled.span`
   color: ${(props) => props.color};
   width: 350px;
 `;
+const Warning = styled.p`
+  color: ${myTheme.colors.dark};
+  font-size: 35px;
+  font-weight: 700;
+  text-align: center;
 
+`
 export const S = {
   Counter,
   Number,
+  Warning
 };

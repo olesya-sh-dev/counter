@@ -37,8 +37,9 @@ const SettingsBox = styled.div`
   padding: 10px;
   border: 5px solid ${myTheme.colors.accent};
   border-radius: 10px;
-  background-color: ${myTheme.colors.secondary};
+  //background-color: ${myTheme.colors.secondary};
   width: 350px;
+  background-color: ${(props) => props.color};
 `;
 const SettingsValueItem = styled.div`
   display: flex;
@@ -58,6 +59,9 @@ const SettingsValueItem = styled.div`
     background-color: ${myTheme.colors.light};
     border-radius: 10px;
   }
+`;
+const Error = styled.input`
+  ${myTheme.colors.dark}
 `;
 
 export const S = {

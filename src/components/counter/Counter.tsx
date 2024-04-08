@@ -22,6 +22,9 @@ export const Counter = ({
     maxValue < minValue ||
     minValue < 0 ||
     maxValue < 0;
+
+    //const warningText = "enter correct values and press 'set'"
+
   return (
     <S.Counter>
       <S.Number
@@ -29,7 +32,7 @@ export const Counter = ({
           number === maxValue ? myTheme.colors.dark : myTheme.colors.primary
         }
       >
-        {displayWarning ? "enter correct values and press 'set'" : number}
+        {displayWarning ? <S.Warning>{"enter correct values and press 'set'"}</S.Warning> : number}
       </S.Number>
       <Wrapper>
         <Button onClick={incrementHandler} disabled={number === maxValue}>
