@@ -1,9 +1,9 @@
 import { S } from "./Button_Style";
 
 type ButtonPropsType = {
-  onClick?: () => void;
+  onClick: () => void;
   disabled?: boolean;
-  children?: React.ReactNode;
+  children: React.ReactNode;
 };
 
 export const Button = ({ onClick, disabled, children }: ButtonPropsType) => {

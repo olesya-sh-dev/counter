@@ -1,13 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Wrapper } from "../Wrapper";
 import { Button } from "../button/Button";
 import { S } from "./Settings_styles";
 import { SettingsValue } from "./SettingsValue";
+import { myTheme } from "../../styles/Theme.styled";
 
 type SettingsPropsType = {
   maxValue: number;
   startValue: number;
-  setNumber: (value: number) => void;
+  setNumbers: (value: number, maxVal: number) => void;
 };
 
 export const Settings = (props: SettingsPropsType) => {
@@ -28,8 +29,9 @@ export const Settings = (props: SettingsPropsType) => {
 
   const setButtonHandler = () => {
     setToLocalStorage(maxValue, startValue);
-    props.setNumber(startValue);
+    props.setNumbers(startValue, maxValue);
   };
+
   return (
     <div>
       <S.Settings>
@@ -50,12 +52,12 @@ export const Settings = (props: SettingsPropsType) => {
         <Wrapper>
           <Button
             onClick={setButtonHandler}
-            disabled={
-              maxValue === startValue ||
-              maxValue < startValue ||
-              startValue < 0 ||
-              maxValue < 0
-            }
+            // disabled={
+            //   maxValue === startValue ||
+            //   maxValue < startValue ||
+            //   startValue < 0 ||
+            //   maxValue < 0
+            // }
           >
             set
           </Button>

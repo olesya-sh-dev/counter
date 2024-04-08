@@ -17,6 +17,11 @@ export const Counter = ({
   resetHandler,
   number,
 }: CounterPropsType) => {
+  const displayWarning =
+    maxValue === minValue ||
+    maxValue < minValue ||
+    minValue < 0 ||
+    maxValue < 0;
   return (
     <S.Counter>
       <S.Number
@@ -24,7 +29,7 @@ export const Counter = ({
           number === maxValue ? myTheme.colors.dark : myTheme.colors.primary
         }
       >
-        {number}
+        {displayWarning ? "enter correct values and press 'set'" : number}
       </S.Number>
       <Wrapper>
         <Button onClick={incrementHandler} disabled={number === maxValue}>

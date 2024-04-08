@@ -12,20 +12,34 @@ function App() {
       let minValue = parseInt(minValueString);
       return { maxValue, minValue };
     }
+    return { maxValue: 0, minValue:0 };
   };
+  const [maxValue, setMaxValue] = useState(
+    () => getFromLocalStorage().maxValue
+  );
+  const [minValue, setMinValue] = useState(
+    () => getFromLocalStorage().minValue
+  );
 
   const [number, setNumber] = useState<number>(getFromLocalStorage()!.minValue);
 
   const incrementHandler = () => {
-    if (number < getFromLocalStorage()!.maxValue) {
+    if (number < maxValue) {
       setNumber((prevNumber) => prevNumber + 1);
     }
   };
 
   const resetHandler = () => {
-    setNumber(getFromLocalStorage()!.minValue);
+    setNumber(minValue);
   };
 
+  const setNumbers = (newMinValue: number, newMaxValue: number) => {
+    setMaxValue(newMaxValue);
+    setMinValue(newMinValue);
+    setNumber(newMinValue);
+    localStorage.setItem("startValue", JSON.stringify(newMinValue));
+    localStorage.setItem("maxValue", JSON.stringify(newMaxValue));
+  };
   return (
     <div className="App">
       <div
@@ -37,13 +51,13 @@ function App() {
         }}
       >
         <Settings
-          maxValue={getFromLocalStorage()!.maxValue}
-          startValue={getFromLocalStorage()!.minValue}
-          setNumber={setNumber}
+          maxValue={maxValue}
+          startValue={minValue}
+          setNumbers={setNumbers}
         />
         <Counter
-          maxValue={getFromLocalStorage()!.maxValue}
-          minValue={getFromLocalStorage()!.minValue}
+          maxValue={maxValue}
+          minValue={minValue}
           incrementHandler={incrementHandler}
           resetHandler={resetHandler}
           number={number}
