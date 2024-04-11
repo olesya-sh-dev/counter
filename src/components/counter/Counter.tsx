@@ -2,28 +2,32 @@ import { myTheme } from "../../styles/Theme.styled";
 import { Button } from "../button/Button";
 import { S } from "./Counter_Styles";
 import { Wrapper } from "../Wrapper";
+import { useEffect } from "react";
 
 type CounterPropsType = {
   maxValue: number;
   minValue: number;
+  setNumber: (value: number) => void;
   incrementHandler: () => void;
   resetHandler: () => void;
   number: number;
+  warning: boolean;
+  warning2: boolean;
 };
+
 export const Counter = ({
   maxValue,
   minValue,
   incrementHandler,
   resetHandler,
+  setNumber,
   number,
+  warning,
+  warning2,
 }: CounterPropsType) => {
-  const displayWarning =
-    maxValue === minValue ||
-    maxValue < minValue ||
-    minValue < 0 ||
-    maxValue < 0;
-
-    //const warningText = "enter correct values and press 'set'"
+  useEffect(() => {
+    setNumber(minValue);
+  }, [minValue]);
 
   return (
     <S.Counter>
@@ -32,15 +36,23 @@ export const Counter = ({
           number === maxValue ? myTheme.colors.dark : myTheme.colors.primary
         }
       >
-        {displayWarning ? <S.Warning>{"enter correct values and press 'set'"}</S.Warning> : number}
+        {warning ? (
+          <S.Warning color={myTheme.colors.dark}>
+            {"Incorrect value!"}
+          </S.Warning>
+        ) : warning2 ? (
+          <S.Warning color={myTheme.colors.primary}>
+            {"set values and press 'set'"}
+          </S.Warning>
+        ) : (
+          number
+        )}
       </S.Number>
       <Wrapper>
         <Button onClick={incrementHandler} disabled={number === maxValue}>
           {"inc"}
         </Button>
-        <Button onClick={resetHandler} disabled={number === minValue}>
-          {"reset"}
-        </Button>
+        <Button onClick={resetHandler}>{"reset"}</Button>
       </Wrapper>
     </S.Counter>
   );

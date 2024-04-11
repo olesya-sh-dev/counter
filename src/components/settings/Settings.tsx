@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 import { Wrapper } from "../Wrapper";
 import { Button } from "../button/Button";
 import { S } from "./Settings_styles";
@@ -7,64 +7,43 @@ import { myTheme } from "../../styles/Theme.styled";
 
 type SettingsPropsType = {
   maxValue: number;
-  startValue: number;
-  setNumbers: (value: number, maxVal: number) => void;
+  minValue: number;
+  setMaxValue: (value: number) => void;
+  setMinValue: (value: number) => void;
+  warning: boolean;
+  setButtonHandler: () => void;
 };
 
 export const Settings = (props: SettingsPropsType) => {
-  const setToLocalStorage = (maxValue: number, startValue: number) => {
-    localStorage.setItem("maxValue", JSON.stringify(maxValue));
-    localStorage.setItem("startValue", JSON.stringify(startValue));
-  };
-  const [maxValue, setMaxValue] = useState(props.maxValue);
-  const [startValue, setStartValue] = useState(props.startValue);
 
-  const warning =
-    maxValue === startValue ||
-    maxValue < startValue ||
-    startValue < 0 ||
-    maxValue < 0;
+
+  const handleMinValueChange = (value: number) => {
+    props.setMinValue(value);
+  };
 
   const handleMaxValueChange = (value: number) => {
-    setMaxValue(value);
-  };
-
-  const handleStartValueChange = (value: number) => {
-    setStartValue(value);
-  };
-
-  const setButtonHandler = () => {
-    setToLocalStorage(maxValue, startValue);
-    props.setNumbers(startValue, maxValue);
+    props.setMaxValue(value);
   };
 
   return (
     <div>
       <S.Settings>
         <S.SettingsField>
-          <S.SettingsBox color={warning ? `${myTheme.colors.dark}` : ""}>
+          <S.SettingsBox color={props.warning ? `${myTheme.colors.dark}` : ""}>
             <SettingsValue
               title="max value"
-              value={maxValue}
+              value={props.maxValue}
               onChange={handleMaxValueChange}
             />
             <SettingsValue
               title="start value"
-              value={startValue}
-              onChange={handleStartValueChange}
+              value={props.minValue}
+              onChange={handleMinValueChange}
             />
           </S.SettingsBox>
         </S.SettingsField>
         <Wrapper>
-          <Button
-            onClick={setButtonHandler}
-            // disabled={
-            //   maxValue === startValue ||
-            //   maxValue < startValue ||
-            //   startValue < 0 ||
-            //   maxValue < 0
-            // }
-          >
+          <Button onClick={props.setButtonHandler} disabled={props.warning}>
             set
           </Button>
         </Wrapper>

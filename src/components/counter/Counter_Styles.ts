@@ -31,8 +31,8 @@ const Number = styled.span`
   width: 350px;
 `;
 const Warning = styled.p`
-  color: ${myTheme.colors.dark};
-  font-size: 35px;
+color: ${(props) => props.color};
+    font-size: 35px;
   font-weight: 700;
   text-align: center;
 

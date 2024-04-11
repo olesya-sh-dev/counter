@@ -10,6 +10,7 @@ type SettingsValueProps = {
 export const SettingsValue = (props: SettingsValueProps) => {
   const setNumberHandler = (event: ChangeEvent<HTMLInputElement>) => {
     props.onChange(+event.currentTarget.value);
+   
   };
 
   return (
