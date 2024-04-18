@@ -9,6 +9,10 @@ type SettingsValueProps = {
 };
 export const SettingsValue = (props: SettingsValueProps) => {
   const setNumberHandler = (event: ChangeEvent<HTMLInputElement>) => {
+    const value = parseInt(event.currentTarget.value);
+  if (value < -1) {
+    return;
+  }
     props.onChange(+event.currentTarget.value);
    
   };
@@ -21,6 +25,7 @@ export const SettingsValue = (props: SettingsValueProps) => {
         value={props.value}
         onChange={setNumberHandler}
         style={{ background: props.value < 0 ? `${myTheme.colors.dark}` : "" }}
+        
       />
     </S.SettingsValueItem>
   );
